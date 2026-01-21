@@ -3,7 +3,10 @@ import path from "node:path";
 import crypto from "node:crypto";
 import type { Order, Settings, StoreShape, TableSession } from "./types";
 
-const DATA_DIR = path.join(process.cwd(), ".data");
+// NOTE:
+// - Local dev: persist to .data/pos.json
+// - Vercel/serverless: project FS is read-only; use /tmp (ephemeral) instead.
+const DATA_DIR = process.env.VERCEL ? path.join("/tmp", "crown-billiard-pos") : path.join(process.cwd(), ".data");
 const STORE_FILE = path.join(DATA_DIR, "pos.json");
 
 function nowIso() {
