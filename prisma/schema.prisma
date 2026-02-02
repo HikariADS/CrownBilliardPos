@@ -1,0 +1,17 @@
+// Prisma schema for SQL Server
+// You can define your models below
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+}
+
+// Example model, replace or add your own tables
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+}
